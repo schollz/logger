@@ -12,6 +12,7 @@ func TestLogging(t *testing.T) {
 	var buf bytes.Buffer
 	logger.SetOutput(&buf)
 
+	logger.SetLevel("trace")
 	funcs := []func(string, ...interface{}){logger.Trace, logger.Debug, logger.Info, logger.Warn, logger.Error}
 	for i, s := range []string{"trace", "debug", "info", "warn", "error"} {
 		funcs[i](s)

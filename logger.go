@@ -18,7 +18,7 @@ func New() (l *Logger) {
 	l = &Logger{
 		T: log.New(os.Stdout, "trace: ", log.Ltime|log.Lshortfile),
 		D: log.New(os.Stdout, "debug: ", log.Ltime|log.Lshortfile),
-		I: log.New(os.Stdout, "info: ", log.Ldate|log.Ltime),
+		I: log.New(os.Stdout, "", log.Ldate|log.Ltime),
 		W: log.New(os.Stdout, "warn:  ", log.Ltime),
 		E: log.New(os.Stdout, "error: ", log.Ltime|log.Lshortfile),
 		t: true,
