@@ -84,51 +84,71 @@ func (l *Logger) SetLevel(s string) {
 	}
 }
 
-func Trace(format string, v ...interface{}) {
-	l.Trace("\t"+format, v...)
+func Tracef(format string, v ...interface{}) {
+	l.Tracef(format, v...)
 }
 
-func Debug(format string, v ...interface{}) {
-	l.Debug("\t"+format, v...)
+func Debugf(format string, v ...interface{}) {
+	l.Debugf(format, v...)
 }
 
-func Info(format string, v ...interface{}) {
-	l.Info("\t"+format, v...)
+func Infof(format string, v ...interface{}) {
+	l.Infof(format, v...)
 }
 
-func Warn(format string, v ...interface{}) {
-	l.Warn("\t"+format, v...)
+func Warnf(format string, v ...interface{}) {
+	l.Warnf(format, v...)
 }
 
-func Error(format string, v ...interface{}) {
-	l.Error("\t"+format, v...)
+func Errorf(format string, v ...interface{}) {
+	l.Errorf(format, v...)
 }
 
-func (l *Logger) Trace(format string, v ...interface{}) {
+func Trace(v ...interface{}) {
+	l.Tracef(fmt.Sprint(v...))
+}
+
+func Debug(v ...interface{}) {
+	l.Debugf(fmt.Sprint(v...))
+}
+
+func Info(v ...interface{}) {
+	l.Infof(fmt.Sprint(v...))
+}
+
+func Warn(v ...interface{}) {
+	l.Warnf(fmt.Sprint(v...))
+}
+
+func Error(v ...interface{}) {
+	l.Errorf(fmt.Sprint(v...))
+}
+
+func (l *Logger) Tracef(format string, v ...interface{}) {
 	if l.t {
 		l.T.Output(2, fmt.Sprintf(format, v...))
 	}
 }
 
-func (l *Logger) Debug(format string, v ...interface{}) {
+func (l *Logger) Debugf(format string, v ...interface{}) {
 	if l.d {
 		l.D.Output(2, fmt.Sprintf(format, v...))
 	}
 }
 
-func (l *Logger) Info(format string, v ...interface{}) {
+func (l *Logger) Infof(format string, v ...interface{}) {
 	if l.i {
 		l.I.Output(2, fmt.Sprintf(format, v...))
 	}
 }
 
-func (l *Logger) Warn(format string, v ...interface{}) {
+func (l *Logger) Warnf(format string, v ...interface{}) {
 	if l.w {
 		l.W.Output(2, fmt.Sprintf(format, v...))
 	}
 }
 
-func (l *Logger) Error(format string, v ...interface{}) {
+func (l *Logger) Errorf(format string, v ...interface{}) {
 	if l.e {
 		l.E.Output(2, fmt.Sprintf(format, v...))
 	}

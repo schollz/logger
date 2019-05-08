@@ -29,7 +29,7 @@ func TestLogging(t *testing.T) {
 	logger.SetOutput(&buf)
 
 	levels := []string{"trace", "debug", "info", "warn", "error"}
-	funcs := []func(string, ...interface{}){logger.Trace, logger.Debug, logger.Info, logger.Warn, logger.Error}
+	funcs := []func(string, ...interface{}){logger.Tracef, logger.Debugf, logger.Infof, logger.Warnf, logger.Errorf}
 
 	for level, levelName := range levels {
 		logger.SetLevel(levelName)
