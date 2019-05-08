@@ -12,7 +12,7 @@ func TestTrace(t *testing.T) {
 	SetOutput(&buf)
 
 	SetLevel("trace")
-	funcs := []func(string, ...interface{}){Trace, Debug, Info, Warn, Error}
+	funcs := []func(...interface{}){Trace, Debug, Info, Warn, Error}
 	for i, s := range []string{"trace", "debug", "info", "warn", "error"} {
 		funcs[i](s)
 		fmt.Print(buf.String())
