@@ -1,6 +1,6 @@
 # logger
 
-<img src="https://img.shields.io/badge/coverage-78%25-brightgreen.svg?style=flat-square" alt="Code coverage">&nbsp;<a href="https://travis-ci.org/schollz/logger"><img src="https://img.shields.io/travis/schollz/logger.svg?style=flat-square" alt="Build Status"></a>&nbsp;<a href="https://godoc.org/github.com/schollz/logger"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square" alt="Go Doc"></a> 
+<img src="https://img.shields.io/badge/coverage-89%25-brightgreen.svg?style=flat-square" alt="Code coverage">&nbsp;<a href="https://travis-ci.org/schollz/logger"><img src="https://img.shields.io/travis/schollz/logger.svg?style=flat-square" alt="Build Status"></a>&nbsp;<a href="https://godoc.org/github.com/schollz/logger"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square" alt="Go Doc"></a> 
 
 Simplistic, opinionated logging for Golang
 
