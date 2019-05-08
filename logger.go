@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime"
 	"time"
 )
 
@@ -18,6 +19,15 @@ type writer struct {
 func (w writer) Write(b []byte) (n int, err error) {
 	return w.Writer.Write(append([]byte(time.Now().Format(w.timeFormat)), b...))
 }
+
+const (
+	red    = "\033[0;31;1m"
+	yellow = "\033[0;33m"
+	white  = "\033[0;37m"
+	cyan   = "\033[0;36m"
+	blue   = "\033[0;34;1m"
+	end    = "\033[0m"
+)
 
 func init() {
 	l = New()
@@ -40,6 +50,13 @@ func New() (l *Logger) {
 		i: true,
 		w: true,
 		e: true,
+	}
+	if runtime.GOOS == "linux" {
+		l.T.SetPrefix(blue + l.T.Prefix() + end)
+		l.D.SetPrefix(cyan + l.D.Prefix() + end)
+		l.I.SetPrefix(white + l.I.Prefix() + end)
+		l.W.SetPrefix(yellow + l.W.Prefix() + end)
+		l.E.SetPrefix(red + l.E.Prefix() + end)
 	}
 	return
 }
