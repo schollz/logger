@@ -30,11 +30,11 @@ type Logger struct {
 
 func New() (l *Logger) {
 	l = &Logger{
-		T: log.New(os.Stdout, "[trace] ", log.Lmicroseconds|log.Lshortfile),
-		D: log.New(os.Stdout, "[debug] ", log.Ltime|log.Lshortfile),
-		I: log.New(os.Stdout, "", log.Ldate|log.Ltime),
-		W: log.New(os.Stdout, "[warning] ", log.Ldate|log.Ltime),
-		E: log.New(os.Stdout, "[error] ", log.Ldate|log.Ltime|log.Lshortfile),
+		T: log.New(os.Stdout, "[trace]\t", log.Lmicroseconds|log.Lshortfile),
+		D: log.New(os.Stdout, "[debug]\t", log.Ltime|log.Lshortfile),
+		I: log.New(os.Stdout, "[info]\t", log.Ldate|log.Ltime),
+		W: log.New(os.Stdout, "[warn]\t", log.Ldate|log.Ltime),
+		E: log.New(os.Stdout, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
 		t: true,
 		d: true,
 		i: true,
@@ -85,23 +85,23 @@ func (l *Logger) SetLevel(s string) {
 }
 
 func Trace(format string, v ...interface{}) {
-	l.Trace(format, v...)
+	l.Trace("\t"+format, v...)
 }
 
 func Debug(format string, v ...interface{}) {
-	l.Debug(format, v...)
+	l.Debug("\t"+format, v...)
 }
 
 func Info(format string, v ...interface{}) {
-	l.Info(format, v...)
+	l.Info("\t"+format, v...)
 }
 
 func Warn(format string, v ...interface{}) {
-	l.Warn(format, v...)
+	l.Warn("\t"+format, v...)
 }
 
 func Error(format string, v ...interface{}) {
-	l.Error(format, v...)
+	l.Error("\t"+format, v...)
 }
 
 func (l *Logger) Trace(format string, v ...interface{}) {
