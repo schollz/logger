@@ -9,8 +9,15 @@ Simplistic, opinionated logging for Golang
 - Leveled
 - Useful defaults / i.e. zero-config
 - Simple API
+- Colors on Linux (Windows colors are horrible and unnessecary)
 
-
+```
+[trace] 20:04:57.670116 logger.go:125: trace shows granular timestamp and line info
+[debug] 20:04:57 logger.go:129: debug shows regular timestamp and line info
+[info]  2019/05/08 20:04:57 info shows timestamp
+[warn]  2019/05/08 20:04:57 warn shows timestamp
+[error] 2019/05/08 20:04:57 logger.go:141: error shows timestamp and line info
+```
 
 ## Install
 
