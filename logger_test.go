@@ -8,12 +8,11 @@ import (
 )
 
 func TestTrace(t *testing.T) {
-	logger := New()
 	var buf bytes.Buffer
-	logger.SetOutput(&buf)
+	SetOutput(&buf)
 
-	logger.SetLevel("trace")
-	funcs := []func(string, ...interface{}){logger.Trace, logger.Debug, logger.Info, logger.Warn, logger.Error}
+	SetLevel("trace")
+	funcs := []func(string, ...interface{}){Trace, Debug, Info, Warn, Error}
 	for i, s := range []string{"trace", "debug", "info", "warn", "error"} {
 		funcs[i](s)
 		fmt.Print(buf.String())

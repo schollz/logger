@@ -5,9 +5,23 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
 )
 
 var l *Logger
+
+type writer struct {
+	io.Writer
+	timeFormat string
+}
+
+func (w writer) Write(b []byte) (n int, err error) {
+	return w.Writer.Write(append([]byte(time.Now().Format(w.timeFormat)), b...))
+}
+
+func init() {
+	l = New()
+}
 
 type Logger struct {
 	T, D, I, W, E *log.Logger
@@ -16,7 +30,7 @@ type Logger struct {
 
 func New() (l *Logger) {
 	l = &Logger{
-		T: log.New(os.Stdout, "[trace] ", log.Ltime|log.Lshortfile),
+		T: log.New(os.Stdout, "[trace] ", log.Lmicroseconds|log.Lshortfile),
 		D: log.New(os.Stdout, "[debug] ", log.Ltime|log.Lshortfile),
 		I: log.New(os.Stdout, "", log.Ldate|log.Ltime),
 		W: log.New(os.Stdout, "[warning] ", log.Ldate|log.Ltime),
@@ -28,6 +42,14 @@ func New() (l *Logger) {
 		e: true,
 	}
 	return
+}
+
+func SetOutput(w io.Writer) {
+	l.SetOutput(w)
+}
+
+func SetLevel(s string) {
+	l.SetLevel(s)
 }
 
 func (l *Logger) SetOutput(w io.Writer) {
@@ -60,6 +82,26 @@ func (l *Logger) SetLevel(s string) {
 		l.i = false
 		l.w = false
 	}
+}
+
+func Trace(format string, v ...interface{}) {
+	l.Trace(format, v...)
+}
+
+func Debug(format string, v ...interface{}) {
+	l.Debug(format, v...)
+}
+
+func Info(format string, v ...interface{}) {
+	l.Info(format, v...)
+}
+
+func Warn(format string, v ...interface{}) {
+	l.Warn(format, v...)
+}
+
+func Error(format string, v ...interface{}) {
+	l.Error(format, v...)
 }
 
 func (l *Logger) Trace(format string, v ...interface{}) {
