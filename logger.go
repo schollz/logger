@@ -143,30 +143,30 @@ func Error(v ...interface{}) {
 
 func (l *Logger) Tracef(format string, v ...interface{}) {
 	if l.t {
-		l.T.Output(2, fmt.Sprintf(format, v...))
+		l.T.Output(3, fmt.Sprintf(format, v...))
 	}
 }
 
 func (l *Logger) Debugf(format string, v ...interface{}) {
 	if l.d {
-		l.D.Output(2, fmt.Sprintf(format, v...))
+		l.D.Output(3, fmt.Sprintf(format, v...))
 	}
 }
 
 func (l *Logger) Infof(format string, v ...interface{}) {
 	if l.i {
-		l.I.Output(2, fmt.Sprintf(format, v...))
+		l.I.Output(3, fmt.Sprintf(format, v...))
 	}
 }
 
 func (l *Logger) Warnf(format string, v ...interface{}) {
 	if l.w {
-		l.W.Output(2, fmt.Sprintf(format, v...))
+		l.W.Output(3, fmt.Sprintf(format, v...))
 	}
 }
 
 func (l *Logger) Errorf(format string, v ...interface{}) {
 	if l.e {
-		l.E.Output(2, fmt.Sprintf(format, v...))
+		l.E.Output(3, fmt.Sprintf(format, v...))
 	}
 }
