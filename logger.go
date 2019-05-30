@@ -40,18 +40,18 @@ type Logger struct {
 
 func New() (l *Logger) {
 	l = &Logger{
-		T: log.New(os.Stdout, "[TRACE]\t", log.Lmicroseconds|log.Lshortfile),
-		D: log.New(os.Stdout, "[DEBUG]\t", log.Ltime|log.Lshortfile),
-		I: log.New(os.Stdout, "[INFO]\t", log.Ldate|log.Ltime),
-		W: log.New(os.Stdout, "[WARN]\t", log.Ldate|log.Ltime),
-		E: log.New(os.Stderr, "[ERROR]\t", log.Ldate|log.Ltime|log.Lshortfile),
+		T: log.New(os.Stdout, "[trace]\t", log.Lmicroseconds|log.Lshortfile),
+		D: log.New(os.Stdout, "[debug]\t", log.Ltime|log.Lshortfile),
+		I: log.New(os.Stdout, "[info]\t", log.Ldate|log.Ltime),
+		W: log.New(os.Stdout, "[warn]\t", log.Ldate|log.Ltime),
+		E: log.New(os.Stderr, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
 		t: true,
 		d: true,
 		i: true,
 		w: true,
 		e: true,
 	}
-	if runtime.GOOS == "linux" || runtime.GOOS == "darwin" {
+	if ( runtime.GOOS == "linux" || runtime.GOOS == "darwin" ) {
 		l.T.SetPrefix(blue + l.T.Prefix() + end)
 		l.D.SetPrefix(cyan + l.D.Prefix() + end)
 		l.I.SetPrefix(white + l.I.Prefix() + end)
