@@ -51,7 +51,7 @@ func New() (l *Logger) {
 		w: true,
 		e: true,
 	}
-	if runtime.GOOS == "linux" {
+	if ( runtime.GOOS == "linux" || runtime.GOOS == "darwin" ) {
 		l.T.SetPrefix(blue + l.T.Prefix() + end)
 		l.D.SetPrefix(cyan + l.D.Prefix() + end)
 		l.I.SetPrefix(white + l.I.Prefix() + end)
