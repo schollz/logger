@@ -44,7 +44,7 @@ func New() (l *Logger) {
 		D: log.New(os.Stdout, "[debug]\t", log.Ltime|log.Lshortfile),
 		I: log.New(os.Stdout, "[info]\t", log.Ldate|log.Ltime),
 		W: log.New(os.Stdout, "[warn]\t", log.Ldate|log.Ltime),
-		E: log.New(os.Stdout, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
+		E: log.New(os.Stderr, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
 		t: true,
 		d: true,
 		i: true,
