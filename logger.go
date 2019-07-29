@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+var l *Logger
+
 type writer struct {
 	io.Writer
 	timeFormat string
@@ -26,6 +28,10 @@ const (
 	blue   = "\033[0;34;1m"
 	end    = "\033[0m"
 )
+
+func init() {
+	l = New()
+}
 
 type Logger struct {
 	T, D, I, W, E *log.Logger
