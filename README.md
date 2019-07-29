@@ -9,7 +9,7 @@ Simplistic, opinionated logging for Golang
 - Leveled
 - Useful defaults / i.e. zero-config
 - Simple API
-- Colors on Linux (Windows colors are horrible and unnessecary)
+- Colors on Linux and macOS (Windows colors are horrible and unnessecary)
 
 ```
 [trace] 20:04:57.670116 logger.go:125: trace shows granular timestamp and line info

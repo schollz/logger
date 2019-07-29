@@ -44,14 +44,14 @@ func New() (l *Logger) {
 		D: log.New(os.Stdout, "[debug]\t", log.Ltime|log.Lshortfile),
 		I: log.New(os.Stdout, "[info]\t", log.Ldate|log.Ltime),
 		W: log.New(os.Stdout, "[warn]\t", log.Ldate|log.Ltime),
-		E: log.New(os.Stdout, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
+		E: log.New(os.Stderr, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
 		t: true,
 		d: true,
 		i: true,
 		w: true,
 		e: true,
 	}
-	if runtime.GOOS == "linux" {
+	if ( runtime.GOOS == "linux" || runtime.GOOS == "darwin" ) {
 		l.T.SetPrefix(blue + l.T.Prefix() + end)
 		l.D.SetPrefix(cyan + l.D.Prefix() + end)
 		l.I.SetPrefix(white + l.I.Prefix() + end)
