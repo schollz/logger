@@ -60,7 +60,6 @@ func New() (l *Logger) {
 		l.E.SetPrefix(red + l.E.Prefix() + end)
 	}
 	if strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))) != "" {
-		fmt.Println(strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))))
 		l.SetLevel(strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))))
 	}
 	return
