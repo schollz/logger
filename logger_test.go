@@ -45,7 +45,9 @@ func TestLogging(t *testing.T) {
 				}
 			}
 			buf.Reset()
+			if logger.GetLevel() != levelName {
+				t.Error("could not get level name: " + levelName)
+			}
 		}
 	}
-
 }

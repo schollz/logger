@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -40,7 +41,7 @@ type Logger struct {
 
 func New() (l *Logger) {
 	l = &Logger{
-		T: log.New(os.Stdout, "[trace]\t", log.Lmicroseconds|log.Lshortfile),
+		T: log.New(os.Stdout, "[trace]\t", log.Ltime|log.Lmicroseconds|log.Lshortfile),
 		D: log.New(os.Stdout, "[debug]\t", log.Ltime|log.Lshortfile),
 		I: log.New(os.Stdout, "[info]\t", log.Ldate|log.Ltime),
 		W: log.New(os.Stdout, "[warn]\t", log.Ldate|log.Ltime),
@@ -57,6 +58,10 @@ func New() (l *Logger) {
 		l.I.SetPrefix(white + l.I.Prefix() + end)
 		l.W.SetPrefix(yellow + l.W.Prefix() + end)
 		l.E.SetPrefix(red + l.E.Prefix() + end)
+	}
+	if strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))) != "" {
+		fmt.Println(strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))))
+		l.SetLevel(strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))))
 	}
 	return
 }
@@ -99,6 +104,19 @@ func (l *Logger) SetLevel(s string) {
 		l.i = false
 		l.w = false
 	}
+}
+
+func (l *Logger) GetLevel() (s string) {
+	if l.t {
+		return "trace"
+	} else if l.d {
+		return "debug"
+	} else if l.i {
+		return "info"
+	} else if l.w {
+		return "warn"
+	}
+	return "error"
 }
 
 func Tracef(format string, v ...interface{}) {
