@@ -70,6 +70,10 @@ func SetOutput(w io.Writer) {
 }
 
 func SetLevel(s string) {
+	// LOGGER enviromental variable takes precedence
+	if strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))) != "" {
+		return
+	}
 	l.SetLevel(s)
 }
 
