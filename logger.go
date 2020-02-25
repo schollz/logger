@@ -109,6 +109,10 @@ func (l *Logger) SetLevel(s string) {
 	}
 }
 
+func GetLevel() (s string) {
+	return l.GetLevel()
+}
+
 func (l *Logger) GetLevel() (s string) {
 	if l.t {
 		return "trace"
