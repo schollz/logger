@@ -13,6 +13,7 @@ Simplistic, opinionated logging for Golang
 - Simple API
 - Colors on Linux (Windows colors are horrible and unnessecary)
 - Set leveling via environmental variables `LOGGER=trace|debug|info|warn|error`
+- Support for javascript console logging
 
 ```
 [trace] 20:04:57.670116 logger.go:125: trace shows granular timestamp and line info
