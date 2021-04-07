@@ -1,3 +1,3 @@
-module github.com/bytedisciple/logger
+module github.com/schollz/logger
 
 go 1.15

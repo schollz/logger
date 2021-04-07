@@ -152,17 +152,14 @@ func Trace(v ...interface{}) {
 
 func Debug(v ...interface{}) {
 	l.Debugf(fmt.Sprint(v...))
-
 }
 
 func Info(v ...interface{}) {
 	l.Infof(fmt.Sprint(v...))
-
 }
 
 func Warn(v ...interface{}) {
 	l.Warnf(fmt.Sprint(v...))
-
 }
 
 func Error(v ...interface{}) {
