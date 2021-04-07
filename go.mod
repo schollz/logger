@@ -1,3 +1,3 @@
-module github.com/schollz/logger
+module github.com/bytedisciple/logger
 
-go 1.12
+go 1.15
