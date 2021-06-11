@@ -9,7 +9,7 @@ Simplistic, opinionated logging for Golang
 - Leveled
 - Useful defaults / i.e. zero-config
 - Simple API
-- Colors on Linux (Windows colors are horrible and unnessecary)
+- Colors on Linux (Windows colors are horrible and unnecessary)
 - Set leveling via environmental variables `LOGGER=trace|debug|info|warn|error`
 
 ```
