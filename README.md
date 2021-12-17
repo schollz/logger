@@ -1,6 +1,8 @@
 # logger
 
-<img src="https://img.shields.io/badge/coverage-83%25-brightgreen.svg?style=flat-square" alt="Code coverage">&nbsp;<a href="https://travis-ci.org/schollz/logger"><img src="https://img.shields.io/travis/schollz/logger.svg?style=flat-square" alt="Build Status"></a>&nbsp;<a href="https://godoc.org/github.com/schollz/logger"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square" alt="Go Doc"></a> 
+<img src="https://img.shields.io/badge/coverage-83%25-brightgreen.svg?style=flat-square" alt="Code coverage">
+&nbsp;<a href="https://travis-ci.org/schollz/logger"><img src="https://img.shields.io/travis/schollz/logger.svg?style=flat-square" alt="Build Status"></a>
+&nbsp;<a href="https://godoc.org/github.com/schollz/logger"><img src="http://img.shields.io/badge/godoc-reference-5272B4.svg?style=flat-square" alt="Go Doc"></a>
 
 Simplistic, opinionated logging for Golang
 
@@ -11,6 +13,7 @@ Simplistic, opinionated logging for Golang
 - Simple API
 - Colors on Linux (Windows colors are horrible and unnecessary)
 - Set leveling via environmental variables `LOGGER=trace|debug|info|warn|error`
+- Support for javascript console logging
 
 ```
 [trace] 20:04:57.670116 logger.go:125: trace shows granular timestamp and line info
@@ -26,8 +29,7 @@ Simplistic, opinionated logging for Golang
 go get github.com/schollz/logger
 ```
 
-## Usage 
-
+## Usage
 
 ```golang
 package main

@@ -35,29 +35,29 @@ func init() {
 }
 
 type Logger struct {
-	T, D, I, W, E *log.Logger
-	t, d, i, w, e bool
+	TraceLogger, DebugLogger, InfoLogger, WarnLogger, ErrorLogger     *log.Logger
+	traceEnabled, debugEnable, infoEnabled, warnEnabled, errorEnabled bool
 }
 
 func New() (l *Logger) {
 	l = &Logger{
-		T: log.New(os.Stdout, "[trace]\t", log.Ltime|log.Lmicroseconds|log.Lshortfile),
-		D: log.New(os.Stdout, "[debug]\t", log.Ltime|log.Lshortfile),
-		I: log.New(os.Stdout, "[info]\t", log.Ldate|log.Ltime),
-		W: log.New(os.Stdout, "[warn]\t", log.Ldate|log.Ltime),
-		E: log.New(os.Stdout, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
-		t: true,
-		d: true,
-		i: true,
-		w: true,
-		e: true,
+		TraceLogger: log.New(os.Stdout, "[trace]\t", log.Ltime|log.Lmicroseconds|log.Lshortfile),
+		DebugLogger: log.New(os.Stdout, "[debug]\t", log.Ltime|log.Lshortfile),
+		InfoLogger:  log.New(os.Stdout, "[info]\t", log.Ldate|log.Ltime),
+		WarnLogger:  log.New(os.Stdout, "[warn]\t", log.Ldate|log.Ltime),
+		ErrorLogger: log.New(os.Stdout, "[error]\t", log.Ldate|log.Ltime|log.Lshortfile),
+		traceEnabled: true,
+		debugEnable:  true,
+		infoEnabled:  true,
+		warnEnabled:  true,
+		errorEnabled: true,
 	}
 	if runtime.GOOS == "linux" {
-		l.T.SetPrefix(blue + l.T.Prefix() + end)
-		l.D.SetPrefix(cyan + l.D.Prefix() + end)
-		l.I.SetPrefix(white + l.I.Prefix() + end)
-		l.W.SetPrefix(yellow + l.W.Prefix() + end)
-		l.E.SetPrefix(red + l.E.Prefix() + end)
+		l.TraceLogger.SetPrefix(blue + l.TraceLogger.Prefix() + end)
+		l.DebugLogger.SetPrefix(cyan + l.DebugLogger.Prefix() + end)
+		l.InfoLogger.SetPrefix(white + l.InfoLogger.Prefix() + end)
+		l.WarnLogger.SetPrefix(yellow + l.WarnLogger.Prefix() + end)
+		l.ErrorLogger.SetPrefix(red + l.ErrorLogger.Prefix() + end)
 	}
 	if strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))) != "" {
 		l.SetLevel(strings.TrimSpace(strings.ToLower(os.Getenv("LOGGER"))))
@@ -78,34 +78,34 @@ func SetLevel(s string) {
 }
 
 func (l *Logger) SetOutput(w io.Writer) {
-	l.T.SetOutput(w)
-	l.D.SetOutput(w)
-	l.I.SetOutput(w)
-	l.W.SetOutput(w)
-	l.E.SetOutput(w)
+	l.TraceLogger.SetOutput(w)
+	l.DebugLogger.SetOutput(w)
+	l.InfoLogger.SetOutput(w)
+	l.WarnLogger.SetOutput(w)
+	l.ErrorLogger.SetOutput(w)
 }
 
 func (l *Logger) SetLevel(s string) {
-	l.t = true
-	l.d = true
-	l.i = true
-	l.w = true
-	l.e = true
+	l.traceEnabled = true
+	l.debugEnable = true
+	l.infoEnabled = true
+	l.warnEnabled = true
+	l.errorEnabled = true
 	switch s {
 	case "debug":
-		l.t = false
+		l.traceEnabled = false
 	case "info":
-		l.t = false
-		l.d = false
+		l.traceEnabled = false
+		l.debugEnable = false
 	case "warn":
-		l.t = false
-		l.d = false
-		l.i = false
+		l.traceEnabled = false
+		l.debugEnable = false
+		l.infoEnabled = false
 	case "error":
-		l.t = false
-		l.d = false
-		l.i = false
-		l.w = false
+		l.traceEnabled = false
+		l.debugEnable = false
+		l.infoEnabled = false
+		l.warnEnabled = false
 	}
 }
 
@@ -114,13 +114,13 @@ func GetLevel() (s string) {
 }
 
 func (l *Logger) GetLevel() (s string) {
-	if l.t {
+	if l.traceEnabled {
 		return "trace"
-	} else if l.d {
+	} else if l.debugEnable {
 		return "debug"
-	} else if l.i {
+	} else if l.infoEnabled {
 		return "info"
-	} else if l.w {
+	} else if l.warnEnabled {
 		return "warn"
 	}
 	return "error"
@@ -164,34 +164,4 @@ func Warn(v ...interface{}) {
 
 func Error(v ...interface{}) {
 	l.Errorf(fmt.Sprint(v...))
-}
-
-func (l *Logger) Tracef(format string, v ...interface{}) {
-	if l.t {
-		l.T.Output(3, fmt.Sprintf(format, v...))
-	}
-}
-
-func (l *Logger) Debugf(format string, v ...interface{}) {
-	if l.d {
-		l.D.Output(3, fmt.Sprintf(format, v...))
-	}
-}
-
-func (l *Logger) Infof(format string, v ...interface{}) {
-	if l.i {
-		l.I.Output(3, fmt.Sprintf(format, v...))
-	}
-}
-
-func (l *Logger) Warnf(format string, v ...interface{}) {
-	if l.w {
-		l.W.Output(3, fmt.Sprintf(format, v...))
-	}
-}
-
-func (l *Logger) Errorf(format string, v ...interface{}) {
-	if l.e {
-		l.E.Output(3, fmt.Sprintf(format, v...))
-	}
 }
